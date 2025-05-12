@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Test - NPC Click Task</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="top-right-buttons">
+      <button id="modeToggle" aria-label="Toggle Day/Night Mode">🌞</button>
+      <button id="readerToggle" aria-label="Toggle Reader Mode">🧏</button>
+    </div>
+
+    <main class="test-container">
+      <p
+        id="testInstruction"
+        style="
+          display: none;
+          font-size: 1.25rem;
+          font-weight: 500;
+          margin-bottom: 20px;
+        "
+        data-read="Please click all the NPCs and objects in the scene. Click Next button when you think you're done."
+      >
+        Please click all the NPCs and objects in the scene. Click "Next" when
+        you think you're done.
+      </p>
+      <div id="gameArea" style="display: none">
+        <img
+          id="screenshot"
+          src=""
+          alt="Scene Screenshot"
+          style="max-width: 100%; border-radius: 12px"
+        />
+      </div>
+      <div id="timer" style="display: none"></div>
+      <div id="results" style="display: none"></div>
+
+      <div id="introSection">
+        <h1>🧪 NPC and Object Click Task</h1>
+        <p
+          data-read="Please click all the NPCs and objects in the scene. Click the Start button when you're ready. Familiarize yourself with the following NPCs and objects before starting"
+        >
+          Please click all the NPCs and objects in the scene.<br />
+          Familiarize yourself with the following NPCs and objects before
+          starting:
+        </p>
+
+        <div class="reference-gallery">
+          <div class="ref-item">
+            <img src="targets/NPC1.PNG" alt="NPC 1" data-read="NPC1" />
+            <span>NPC 1</span>
+          </div>
+          <div class="ref-item">
+            <img src="targets/NPC2.PNG" alt="NPC 2" data-read="NPC2" />
+            <span>NPC 2</span>
+          </div>
+          <div class="ref-item">
+            <img
+              src="targets/container.PNG"
+              alt="NPC 3"
+              data-read="Container"
+            />
+            <span>Container</span>
+          </div>
+          <div class="ref-item">
+            <img src="targets/printer.PNG" alt="NPC 4" data-read="Printer" />
+            <span>Printer</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button id="nextButton" data-read="Next">Next</button>
+        <button id="startButton" data-read="Start Test" style="display: none">
+          Start Test
+        </button>
+        <button id="skipButton" style="display: none" data-read="Next button">
+          Next
+        </button>
+        <button id="downloadBtn" style="display: none">Download CSV</button>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
