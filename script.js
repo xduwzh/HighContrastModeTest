@@ -1,7 +1,7 @@
 // Screenshots and NPCs positions per image
-const tasks = [
+let tasks = [];
+const npcPositions = [
   {
-    image: "testImg2/1/1.png",
     npcs: [
       { x: 568, y: 359, width: 48, height: 28 },
       { x: 755, y: 371, width: 45, height: 23 },
@@ -9,7 +9,6 @@ const tasks = [
     ],
   },
   {
-    image: "testImg2/1/2.png",
     npcs: [
       { x: 353, y: 160, width: 101, height: 55 },
       { x: 220, y: 365, width: 180, height: 105 },
@@ -17,7 +16,6 @@ const tasks = [
     ],
   },
   {
-    image: "testImg2/1/3.png",
     npcs: [
       { x: 112, y: 343, width: 65, height: 130 },
       { x: 625.5, y: 343, width: 43, height: 79 },
@@ -26,7 +24,6 @@ const tasks = [
     ],
   },
   {
-    image: "testImg2/1/4.png",
     npcs: [
       { x: 89.5, y: 313, width: 61, height: 29 },
       { x: 293.5, y: 350, width: 56, height: 30 },
@@ -36,7 +33,6 @@ const tasks = [
     ],
   },
   {
-    image: "testImg2/1/5.png",
     npcs: [
       { x: 403.5, y: 379, width: 139, height: 84 },
       { x: 674.5, y: 316, width: 49, height: 30 },
@@ -45,7 +41,6 @@ const tasks = [
     ],
   },
   {
-    image: "testImg2/1/6.png",
     npcs: [
       { x: 175.5, y: 388, width: 66, height: 39 },
       { x: 363.5, y: 352, width: 114, height: 68 },
@@ -53,7 +48,6 @@ const tasks = [
     ],
   },
   {
-    image: "testImg2/1/7.png",
     npcs: [
       { x: 87.5, y: 428, width: 103, height: 61 },
       { x: 421.5, y: 416, width: 52, height: 36 },
@@ -61,7 +55,6 @@ const tasks = [
     ],
   },
   {
-    image: "testImg2/1/8.png",
     npcs: [
       { x: 495.5, y: 276, width: 59, height: 38 },
       { x: 729.5, y: 307, width: 84, height: 53 },
@@ -69,7 +62,6 @@ const tasks = [
     ],
   },
   {
-    image: "testImg2/1/9.png",
     npcs: [
       { x: 195.5, y: 451, width: 66, height: 43 },
       { x: 795.5, y: 352, width: 45, height: 27 },
@@ -77,21 +69,18 @@ const tasks = [
     ],
   },
   {
-    image: "testImg2/1/10.png",
     npcs: [
       { x: 391.5, y: 336, width: 88, height: 206 },
       { x: 677.5, y: 349, width: 83, height: 225 },
     ],
   },
   {
-    image: "testImg2/1/11.png",
     npcs: [
       { x: 275.5, y: 333, width: 62, height: 139 },
       { x: 759.5, y: 369, width: 114, height: 244 },
     ],
   },
   {
-    image: "testImg2/1/12.png",
     npcs: [
       { x: 161.5, y: 330, width: 63, height: 115 },
       { x: 589.5, y: 320, width: 51, height: 119 },
@@ -99,7 +88,6 @@ const tasks = [
     ],
   },
   {
-    image: "testImg2/1/13.png",
     npcs: [
       { x: 356.5, y: 309, width: 50, height: 120 },
       { x: 623.5, y: 317, width: 56, height: 146 },
@@ -107,14 +95,12 @@ const tasks = [
     ],
   },
   {
-    image: "testImg2/1/14.png",
     npcs: [
       { x: 258.5, y: 264, width: 80, height: 191 },
       { x: 668.5, y: 269, width: 65, height: 103 },
     ],
   },
   {
-    image: "testImg2/1/15.png",
     npcs: [
       { x: 319.5, y: 319, width: 39, height: 94 },
       { x: 524.5, y: 334, width: 53, height: 86 },
@@ -161,6 +147,7 @@ const gameArea = document.getElementById("gameArea");
 const timerDisplay = document.getElementById("timer");
 const resultsDisplay = document.getElementById("results");
 const nextButton = document.getElementById("nextButton");
+const selectSet = document.getElementById("setSelect");
 
 startButton.addEventListener("click", startTest);
 skipButton.addEventListener("click", skipTask);
@@ -168,8 +155,9 @@ nextButton.addEventListener("click", nextIntro);
 
 function nextIntro() {
   nextButton.style.display = "none";
-  startButton.style.display = "block";
 
+  startButton.style.display = "block";
+  selectSet.style.display = "block";
   // Update paragraph content and data-read
   const introText = document.querySelector("#introSection p");
   if (introText) {
@@ -205,6 +193,11 @@ function nextIntro() {
   }
 }
 function startTest() {
+  const setNumber = document.getElementById("setSelect").value;
+  tasks = npcPositions.map((task, index) => ({
+    image: `testImg2/${setNumber}/${index + 1}.png`,
+    npcs: task.npcs,
+  }));
   if (currentTaskIndex >= tasks.length) {
     location.reload();
     window.location.href = "index.html";
@@ -219,10 +212,10 @@ function startTest() {
   if (gameArea) gameArea.style.display = "block";
   if (timerDisplay) timerDisplay.style.display = "block";
   startButton.style.display = "none";
-
+  selectSet.style.display = "none";
   startButton.disabled = true;
   if (skipButton) {
-    skipButton.style.display = "inline-block"; // 👈 Show it
+    skipButton.style.display = "inline-block";
     skipButton.disabled = false;
   }
   resultsDisplay.innerHTML = "";
@@ -472,9 +465,18 @@ function downloadCSV() {
   const blob = new Blob([csv], { type: "text/csv" });
   const url = URL.createObjectURL(blob);
 
+  // Get set number from the dropdown
+  const setNumber = document.getElementById("setSelect")?.value || "unknown";
+
+  // Get timestamp: YYYYMMDD_HHMMSS
+  const now = new Date();
+  const timestamp = now.toISOString().replace(/[-:T]/g, "").slice(0, 15);
+
+  const filename = `${setNumber}_${timestamp}.csv`;
+
   const a = document.createElement("a");
   a.href = url;
-  a.download = "user_test_results.csv";
+  a.download = filename;
   a.click();
 
   URL.revokeObjectURL(url);
