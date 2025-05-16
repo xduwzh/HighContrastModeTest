@@ -193,8 +193,11 @@ function nextIntro() {
   }
 }
 function startTest() {
-  const setNumber = document.getElementById("setSelect").value;
-  tasks = npcPositions.map((task, index) => ({
+  // const setNumber = document.getElementById("setSelect").value;
+  const setNumber = parseInt(document.getElementById("setSelect").value);
+  const npcSet = window.npcPositionsBySet[setNumber];
+
+  tasks = npcSet.map((task, index) => ({
     image: `testImg2/${setNumber}/${index + 1}.png`,
     npcs: task.npcs,
   }));
