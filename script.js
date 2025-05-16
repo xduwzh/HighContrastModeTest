@@ -272,15 +272,12 @@ function createNPCAreas(npcs) {
 }
 
 function npcClicked(event) {
-  currentTaskNpcsFound++;
-  currentTaskClicks++;
   const div = event.target;
+  if (!div.classList.contains("clicked")) {
+    currentTaskNpcsFound++;
+  }
+  currentTaskClicks++;
   div.classList.add("clicked"); // Add red border
-  // div.remove();
-  // remainingNPCs = remainingNPCs.filter((d) => d !== div);
-  // if (remainingNPCs.length === 0) {
-  //   completeTask();
-  // }
 }
 
 function completeTask() {
