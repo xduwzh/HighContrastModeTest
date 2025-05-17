@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Test Questionnaire</title>
+  <link rel="stylesheet" href="questionnaire.css">
+</head>
+<body>
+  <main class="form-container">
+    <h1>User Test Questionnaire</h1>
+    
+    <form id="questionnaire">
+      <h2>Pre-Test Questions</h2>
+
+      <label>How often do you play video games?</label><br>
+      <select name="gameFrequency" required>
+        <option value="">Select one</option>
+        <option value="Never">Never</option>
+        <option value="Occasionally">Occasionally</option>
+        <option value="Frequently">Frequently</option>
+        <option value="Daily">Daily</option>
+      </select><br><br>
+
+      <label>Have you used high contrast mode before?</label><br>
+      <select name="contrastUsed" required>
+        <option value="">Select one</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select><br><br>
+
+      <label>Confidence in visual search tasks (1–5):</label><br>
+      <input type="number" name="confidence" min="1" max="5" required><br><br>
+
+      <h2>Post-Test Questions</h2>
+
+      <label>Difficulty of identifying NPCs/objects (1–5):</label><br>
+      <input type="number" name="difficulty" min="1" max="5" required><br><br>
+
+      <label>Did high contrast help?</label><br>
+      <select name="contrastHelpful" required>
+        <option value="">Select one</option>
+        <option value="Yes">Yes</option>
+        <option value="Somewhat">Somewhat</option>
+        <option value="No">No</option>
+      </select><br><br>
+
+      <label>Was the interface clear?</label><br>
+      <select name="interfaceClear" required>
+        <option value="">Select one</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select><br>
+      <input type="text" name="confusingDetail" placeholder="What was confusing?"><br><br>
+
+      <h2>Agreement (1–5)</h2>
+
+      <label>The contrast helped efficiency:</label><br>
+      <input type="number" name="agreeContrast" min="1" max="5" required><br><br>
+
+      <label>I felt confident identifying targets:</label><br>
+      <input type="number" name="agreeConfidence" min="1" max="5" required><br><br>
+
+      <label>I would like this feature in other games:</label><br>
+      <input type="number" name="agreeAdoption" min="1" max="5" required><br><br>
+
+      <button type="button" onclick="downloadResponses()">Download CSV</button>
+    </form>
+  </main>
+
+  <script src="questionnaire.js"></script>
+</body>
+</html>
